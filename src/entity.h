@@ -1,5 +1,5 @@
-#ifndef FINAL_ENTITY_H
-#define FINAL_ENTITY_H
+#ifndef FISH_SIMULATOR_ENTITY_H
+#define FISH_SIMULATOR_ENTITY_H
 
 class world;
 #include "./world.h"
@@ -24,4 +24,4 @@ public:
     void set_y(double new_y) { y = new_y; }
 };
 
-#endif //FINAL_ENTITY_H
+#endif //FISH_SIMULATOR_ENTITY_H

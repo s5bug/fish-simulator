@@ -1,5 +1,5 @@
-#ifndef FINAL_WORLD_H
-#define FINAL_WORLD_H
+#ifndef FISH_SIMULATOR_WORLD_H
+#define FISH_SIMULATOR_WORLD_H
 
 #include <memory>
 #include <vector>
@@ -47,4 +47,4 @@ public:
     [[nodiscard]] const Camera2D& get_camera() const { return camera; }
 };
 
-#endif //FINAL_WORLD_H
+#endif //FISH_SIMULATOR_WORLD_H

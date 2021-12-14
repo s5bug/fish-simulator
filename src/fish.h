@@ -1,5 +1,5 @@
-#ifndef FINAL_FISH_H
-#define FINAL_FISH_H
+#ifndef FISH_SIMULATOR_FISH_H
+#define FISH_SIMULATOR_FISH_H
 
 #include <cmath>
 
@@ -149,4 +149,4 @@ public:
     }
 };
 
-#endif //FINAL_FISH_H
+#endif //FISH_SIMULATOR_FISH_H
