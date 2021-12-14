@@ -1,8 +1,7 @@
 #ifndef FISH_SIMULATOR_ENTITY_H
 #define FISH_SIMULATOR_ENTITY_H
 
-class world;
-#include "./world.h"
+class world; // "./world.h"
 
 class entity {
 private:

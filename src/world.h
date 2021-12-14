@@ -6,7 +6,6 @@
 
 #include "raylib.h"
 
-class entity;
 #include "./entity.h"
 
 class world final {
