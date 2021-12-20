@@ -25,5 +25,5 @@ if (NOT raylib_FOUND)
 
 endif()
 
-add_executable(fish-simulator src/main.cpp src/fish.h src/entity.h src/world.h)
+add_executable(fish-simulator src/main.cpp src/fish.h src/entity.h src/world.h src/player_fish.h src/ai_fish.h src/ai_fish.cpp src/player_fish.cpp src/entity.cpp src/fish.cpp)
 target_link_libraries(fish-simulator raylib)

@@ -22,6 +22,9 @@ public:
 
     void update() {
         for(auto i = entities.begin(); i < entities.end(); i++) {
+            for(auto j = entities.begin(); j < entities.end(); j++) {
+                if(i != j) (*i)->host(*this, (*j)->interactions());
+            }
             (*i)->update(*this);
         }
     }
