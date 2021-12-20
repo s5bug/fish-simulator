@@ -13,11 +13,11 @@ int main() {
     SetTargetFPS(60);
 
     world world;
-    world.add(std::make_unique<player_fish>(0.0, 0.0, 0.0, RED, 15));
+    world.add(std::make_unique<player_fish>(0.0, RED, 15), 400.0, 225.0);
 
     for(int i = 5; i < 10; i++) {
         for(int j = 5; j < 10; j++) {
-            world.add(std::make_unique<ai_fish>(i * 50.0, j * 50.0, 0.0, BLUE));
+            world.add(std::make_unique<ai_fish>(0.0, BLUE), i * 50.0, j * 50.0);
         }
     }
 

@@ -31,8 +31,8 @@ private:
     int speed_selection;
 
 public:
-    player_fish(double x, double y, double heading, Color color, int max_speed) :
-            fish(x, y, color, heading),
+    player_fish(double heading, Color color, int max_speed) :
+            fish(color, heading),
             max_speed(max_speed),
             speed_selection(1),
             self(*this) {}

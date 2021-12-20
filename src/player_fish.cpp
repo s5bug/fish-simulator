@@ -71,7 +71,7 @@ void player_fish::move() {
 }
 
 void player_fish::update(world &world) {
-    world.target_camera(-get_x() + (GetScreenWidth() / 2.0), -get_y() + ((GetScreenHeight() - 16.0) / 2.0));
+    world.offset_camera(-get_x() + (GetScreenWidth() / 2.0), -get_y() + ((GetScreenHeight() - 16.0) / 2.0));
 
     Vector2 mouseWorldCoords = GetScreenToWorld2D(
             {static_cast<float>(GetMouseX()), static_cast<float>(GetMouseY())},

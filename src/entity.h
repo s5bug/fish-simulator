@@ -3,17 +3,20 @@
 
 #include "raylib.h"
 
+class entity_quad_tree; // "./entity_quad_map.h"
 class world; // "./world.h"
 
 class entity_visitor;
 
 class entity {
 private:
-    double x;
-    double y;
+    double last_known_x;
+    double last_known_y;
+    entity_quad_tree* owner;
+    friend entity_quad_tree;
 
 public:
-    entity(double x, double y) : x(x), y(y) {}
+    entity() : owner(nullptr) {}
     virtual ~entity() = default;
 
     virtual void update(world& world) = 0;
@@ -24,10 +27,10 @@ public:
     virtual const entity_visitor& interactions() = 0;
 
 public:
-    [[nodiscard]] double get_x() const { return x; }
-    void set_x(double new_x) { x = new_x; }
-    [[nodiscard]] double get_y() const { return y; }
-    void set_y(double new_y) { y = new_y; }
+    [[nodiscard]] double get_x() const;
+    void set_x(double new_x);
+    [[nodiscard]] double get_y() const;
+    void set_y(double new_y);
 };
 
 class entity_visitor {

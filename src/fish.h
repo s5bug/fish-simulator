@@ -2,6 +2,7 @@
 #define FISH_SIMULATOR_FISH_H
 
 #include <cmath>
+#include <cstdio>
 
 #include "raylib.h"
 
@@ -22,8 +23,8 @@ public:
     double current_velocity;
 
 public:
-    fish(double x, double y, Color color, double heading) :
-            entity(x, y),
+    fish(Color color, double heading) :
+            entity(),
             color(color),
             heading(heading),
             current_velocity(0.0) {}

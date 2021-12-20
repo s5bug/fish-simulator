@@ -26,14 +26,45 @@ public:
     void visit_player_fish(world& world, player_fish& player_fish) const override;
 };
 
+class ai_fish_boiding final : public player_fish_visitor {
+private:
+    ai_fish& self;
+
+public:
+    player_fish** player;
+    std::vector<fish*>* other_fish;
+
+public:
+    explicit ai_fish_boiding(ai_fish& self, player_fish** player, std::vector<fish*>* other_fish) :
+            self(self),
+            player(player),
+            other_fish(other_fish) {}
+
+    void visit_entity(world& world, entity& entity) const override;
+    void visit_fish(world& world, fish& fish) const override;
+    void visit_player_fish(world& world, player_fish& player_fish) const override;
+};
+
 class ai_fish final : public fish {
 private:
     ai_fish_interactions self;
 
 public:
-    ai_fish(double x, double y,  double heading, Color color) : fish(x, y, color, heading), self(*this) {}
+    double excitement;
+
+public:
+    ai_fish(double heading, Color color) :
+            fish(color, heading),
+            self(*this),
+            excitement(0.0) {}
     ~ai_fish() override = default;
 
+private:
+    void adjust_current_velocity();
+    void adjust_heading(world& world);
+    void move();
+
+public:
     void update(world& world) override;
 
     void host(world& world, const entity_visitor& visitor) override;
