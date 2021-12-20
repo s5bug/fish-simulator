@@ -10,15 +10,41 @@ void ai_fish::host(world& world, const entity_visitor& visitor) {
 }
 
 void ai_fish::adjust_current_velocity() {
-    current_velocity += (excitement - current_velocity) / 10.0;
+    current_velocity += ((excitement * 2.0) - current_velocity) / 10.0;
 }
 
 void ai_fish::adjust_heading(world& world) {
-    player_fish* player;
+    player_fish* player = nullptr;
     std::vector<fish*> other_fish;
     ai_fish_boiding boiding(*this, &player, &other_fish);
 
     world.visit_entities_within(world, get_x(), get_y(), 50.0, boiding);
+
+    double targetHeading;
+
+    if(player != nullptr) targetHeading = player->heading;
+    else {
+        double total = 0.0;
+        for (fish* fptr : other_fish) {
+            total += fptr->heading;
+        }
+        targetHeading = total / other_fish.size();
+    }
+
+    if(std::abs(heading - targetHeading) < (5.0 * PI / 180.0)) {
+        heading = targetHeading;
+    } else {
+        if(heading < targetHeading) {
+            if(std::abs(heading - targetHeading) <= PI) heading += (5.0 * PI / 180.0);
+            else heading -= (5.0 * PI / 180.0);
+        } else {
+            if(std::abs(heading - targetHeading) <= PI) heading -= (5.0 * PI / 180.0);
+            else heading += (5.0 * PI / 180.0);
+        }
+
+        if(heading > PI) heading -= (2.0 * PI);
+        else if(heading < -PI) heading += (2.0 * PI);
+    }
 }
 
 void ai_fish::move() {
@@ -49,7 +75,7 @@ void ai_fish_interactions::visit_ai_fish(world& world, ai_fish& ai_fish) const {
     double distX = self.get_x() - ai_fish.get_x();
     double distY = self.get_y() - ai_fish.get_y();
     double distance = std::sqrt((distX * distX) + (distY * distY));
-    if(distance != 0) self.excitement += (ai_fish.current_velocity - self.excitement) / distance;
+    if(distance != 0) self.excitement += (ai_fish.excitement - self.excitement) / distance;
 
     visit_fish(world, ai_fish);
 }
